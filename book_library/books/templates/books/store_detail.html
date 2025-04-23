@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} {{ store.name }}({{ store.city }})</title>
+</head>
+<body>
+    <h1>Книжный каталог</h1>
+    <h2>{{ title }} {{ store.name }}({{ store.city }})</h2>
+    <p>Количество книг в магазине: {{ books_counter }}</p>
+    <p>Количество книг в магазине: {{ store.book_set.count }}</p>
+    <h3>Список книг в магазине</h3>
+
+    <ul>
+        {% for book in store.book_set.all %}
+            <li>
+                <ul>
+                    <li>Название {{ book.title }}</li>
+                    <li>Автор {{ book.author.name }}</li>
+                    <li>Дата издания {{ book.published_date }}</li>
+                    <li>Издательство {{ book.publisher.name }} ({{ book.publisher.country }})</li>
+                    <li>Средняя оценка {{ book.average_review_rate }}</li>
+                </ul>
+                <br>
+        {% empty %}
+            <li>Ничего не найдено</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
